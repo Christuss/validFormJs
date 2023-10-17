@@ -14,7 +14,7 @@ class NumberUrlapElem {
         console.log(this.inputElem);
         this.inputElem.on("keyup", () => { 
             this.#value = this.inputElem.val();
-            if (this.#value > 1000 && this.#value < 2023) {
+            if (this.#value > this.#leiro.regex.min && this.#value < this.#leiro.regex.max) {
                  this.#valid = true;
                 this.validElem.removeClass("elrejt");
                 this.invalidElem.addClass("elrejt");

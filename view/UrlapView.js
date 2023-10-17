@@ -1,3 +1,4 @@
+import NumberUrlapElem from "./NumberUrlapView.js";
 import TextUrlapElem from "./TextUrlapElem.js";
 
 class UrlapView {
@@ -36,6 +37,7 @@ class UrlapView {
             } else {
                 console.log('nem valid az űrlap');
             }
+            this.#esemeny("esemeny");
         })
     }
 
@@ -47,7 +49,7 @@ class UrlapView {
                     this.#urlapElemLista.push(new TextUrlapElem(key, this.#leiro[key], this.formElem));
                     break;
                 case "number":
-                    this.#numberElem(key);
+                    this.#urlapElemLista.push(new NumberUrlapElem(key, this.#leiro[key], this.formElem));
                     break;
                 default:
                     console.log("ez az ürlapelem még nem készült el");
@@ -76,6 +78,10 @@ class UrlapView {
         this.formElem.append(txt);
     }
 
+    #esemeny(esemeny) {
+        let es = new CustomEvent(esemeny, {detail : this.#urlapElemLista});
+        window.dispatchEvent(es);
+    }
 }
 
 export default UrlapView;
